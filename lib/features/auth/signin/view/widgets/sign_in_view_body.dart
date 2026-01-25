@@ -6,10 +6,21 @@ class SignInViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text('welcome back',style:AppTextStyles.bold24 ,),
-      ],
+    return Align(
+      alignment: AlignmentGeometry.center,
+      child: Column(
+        children: [
+          SizedBox(height: 60),
+          Image.asset('assets/images/sign in.png', width: 150, height: 150),
+          Text(
+            'Your gateway to modern living',
+            style: AppTextStyles.regular14.copyWith(color: Color(0xff64748B)),
+          ),
+          const SizedBox(height: 26),
+          const Text('Welcome Back', style: AppTextStyles.bold24),
+          
+        ],
+      ),
     );
   }
 }
