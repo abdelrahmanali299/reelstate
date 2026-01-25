@@ -7,7 +7,8 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SignInViewBody(),
+      backgroundColor: Color(0xffF6F8F8),
+      body: SafeArea(child: SignInViewBody()),
     );
   }
 }
