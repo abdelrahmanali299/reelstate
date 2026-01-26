@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
-import 'package:reelstate/features/home/presentation/widgets/home_app_bar.dart';
-import 'package:reelstate/features/home/presentation/widgets/products_categories_grid.dart';
-import 'package:reelstate/features/home/presentation/widgets/search_bar.dart';
+import 'package:reelstate/features/home/presentation/views/widgets/home_app_bar.dart';
+import 'package:reelstate/features/home/presentation/views/widgets/products_categories_grid.dart';
+import 'package:reelstate/features/home/presentation/views/widgets/search_bar.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -24,10 +24,10 @@ class HomeViewBody extends StatelessWidget {
               SizedBox(height: 16),
               Row(
                 children: [
-                  Text('Recommended for you', style: AppTextStyles.bold20),
+                  Text('مرشحه لك', style: AppTextStyles.bold20),
                   Spacer(),
                   Text(
-                    'See All',
+                    'عرض المزيد',
                     style: AppTextStyles.bold14.copyWith(color: Colors.blue),
                   ),
                 ],
