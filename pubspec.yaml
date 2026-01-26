@@ -15,8 +15,9 @@ dependencies:
   flutter_bloc: ^9.1.1
   flutter_native_splash: ^2.4.7
   lottie: ^3.3.2
+  flutter_localizations:
+    sdk: flutter
 
-  
   intl: ^0.20.2
 dev_dependencies:
   flutter_test:
@@ -28,7 +29,6 @@ flutter:
   uses-material-design: true
 
   assets:
-     
     - assets/images/
     - assets/lottie/
 
@@ -43,3 +43,5 @@ flutter_native_splash:
   image: assets/images/splash.png
   android: true
   ios: true
+flutter_intl:
+  enabled: true
