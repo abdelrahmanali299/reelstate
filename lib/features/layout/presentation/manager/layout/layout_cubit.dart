@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:reelstate/features/home/presentation/widgets/home_view_body.dart';
+import 'package:reelstate/features/home/presentation/views/widgets/home_view_body.dart';
 
 part 'layout_state.dart';
 

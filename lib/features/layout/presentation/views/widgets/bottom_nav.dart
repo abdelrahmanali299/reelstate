@@ -8,10 +8,10 @@ class BottomNav extends StatelessWidget {
   const BottomNav({super.key});
 
   final List<BottomNavModel> bottomNavItems = const [
-    BottomNavModel(title: "Home", iconData: Icons.home_outlined),
-    BottomNavModel(title: "Saved", iconData: Icons.favorite_outline),
-    BottomNavModel(title: "Chat", iconData: Icons.chat_bubble_outline),
-    BottomNavModel(title: "Profile", iconData: Icons.person_outline),
+    BottomNavModel(title: "الرئيسية", iconData: Icons.home_outlined),
+    BottomNavModel(title: "المفضلة", iconData: Icons.favorite_outline),
+    BottomNavModel(title: "محادثة", iconData: Icons.chat_bubble_outline),
+    BottomNavModel(title: "حسابي", iconData: Icons.person_outline),
   ];
 
   @override
