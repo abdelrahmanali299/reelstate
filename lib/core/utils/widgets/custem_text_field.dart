@@ -14,7 +14,7 @@ class CustomTextField extends StatefulWidget {
     this.fillColor = const Color(0xffEDEDED),
     this.focusBorderColor,
     this.readOnly = false,
-    this.labelText = '',
+    this.labelText,
     this.borderColor = Colors.white,
     this.labelStyle,
     this.floatingLabelBehavior
@@ -30,7 +30,7 @@ class CustomTextField extends StatefulWidget {
   final Color fillColor;
   final Color? focusBorderColor;
   final bool readOnly;
-  final String labelText;
+  final String? labelText;
   final Color borderColor;
   final TextStyle? labelStyle;
   final FloatingLabelBehavior? floatingLabelBehavior;
