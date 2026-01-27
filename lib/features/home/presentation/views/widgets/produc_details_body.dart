@@ -4,14 +4,15 @@ import 'package:reelstate/features/home/presentation/views/widgets/product_detai
 import 'package:reelstate/features/home/presentation/views/widgets/product_details_info.dart';
 
 class ProducDetailsBody extends StatelessWidget {
-  const ProducDetailsBody({super.key});
+  final int productIndex;
+  const ProducDetailsBody({super.key, this.productIndex = 0});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          ProductDetailsImages(),
+          ProductDetailsImages(productIndex: productIndex),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: ProductDetailsInfo(),

@@ -3,7 +3,8 @@ import 'package:reelstate/core/utils/app_text_styles.dart';
 import 'package:reelstate/core/utils/widgets/custom_favarate_icon.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  final int productIndex;
+  const ProductItem({super.key, this.productIndex = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +20,13 @@ class ProductItem extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  'assets/images/reelstate_img.png',
-                  fit: BoxFit.fill,
-                  width: double.infinity,
+                child: Hero(
+                  tag: 'product_image_$productIndex',
+                  child: Image.asset(
+                    'assets/images/reelstate_img.png',
+                    fit: BoxFit.fill,
+                    width: double.infinity,
+                  ),
                 ),
               ),
               SizedBox(height: 8),

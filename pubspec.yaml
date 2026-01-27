@@ -35,7 +35,7 @@ flutter:
   fonts:
     - family: Manrope
       fonts:
-        - asset: assets/fonts/Manrope-Regular.ttf
+        - asset: assets/fonts/
 
 # ---------------- SPLASH CONFIG ----------------
 flutter_native_splash:

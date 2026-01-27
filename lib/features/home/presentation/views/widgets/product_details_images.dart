@@ -4,7 +4,8 @@ import 'package:reelstate/core/utils/widgets/custom_favarate_icon.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/dot_indictor.dart';
 
 class ProductDetailsImages extends StatelessWidget {
-  const ProductDetailsImages({super.key});
+  final int productIndex;
+  const ProductDetailsImages({super.key, this.productIndex = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +17,13 @@ class ProductDetailsImages extends StatelessWidget {
             itemCount: 3,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return Image.asset(
-                'assets/images/reelstate_img.png',
-                fit: BoxFit.fill,
-                width: double.infinity,
+              return Hero(
+                tag: 'product_image_$productIndex',
+                child: Image.asset(
+                  'assets/images/reelstate_img.png',
+                  fit: BoxFit.fill,
+                  width: double.infinity,
+                ),
               );
             },
           ),
