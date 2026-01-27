@@ -10,6 +10,7 @@ class RealestateModel {
   final String address;
   final int id;
   final DateTime date;
+  final bool isFav;
 
   RealestateModel({
     required this.title,
@@ -23,6 +24,7 @@ class RealestateModel {
     required this.address,
     required this.id,
     required this.date,
+    this.isFav = false,
   });
   factory RealestateModel.fromJson(Map<String, dynamic> json) {
     return RealestateModel(
@@ -37,6 +39,7 @@ class RealestateModel {
       address: json['address'],
       id: json['id'],
       date: DateTime.parse(json['date']),
+      isFav: json['isFav'],
     );
   }
   Map<String, dynamic> toJson() {
@@ -52,6 +55,7 @@ class RealestateModel {
       'address': address,
       'id': id,
       'date': date,
+      'isFav': isFav,
     };
   }
 }
