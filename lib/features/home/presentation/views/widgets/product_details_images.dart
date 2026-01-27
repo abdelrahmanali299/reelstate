@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reelstate/core/utils/widgets/custom_back_button.dart';
 import 'package:reelstate/core/utils/widgets/custom_favarate_icon.dart';
-import 'package:reelstate/features/home/presentation/views/widgets/dot_indictor.dart';
+import 'package:reelstate/features/home/presentation/views/widgets/dot_indicator_section.dart';
 
 class ProductDetailsImages extends StatelessWidget {
   final int productIndex;
@@ -29,19 +29,7 @@ class ProductDetailsImages extends StatelessWidget {
           ),
         ),
 
-        Positioned(
-          bottom: 20,
-          right: 0,
-          left: 0,
-
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              3,
-              (index) => DotIndictor(isActive: index == 0),
-            ),
-          ),
-        ),
+        Positioned(bottom: 20, right: 0, left: 0, child: DotIndicatorSection()),
         Positioned(
           right: 10,
           top: 10,

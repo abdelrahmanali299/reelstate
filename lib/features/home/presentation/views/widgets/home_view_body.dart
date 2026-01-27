@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/home_app_bar.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/products_categories_grid.dart';
+import 'package:reelstate/features/home/presentation/views/widgets/recommended_realestate_images.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/search_bar.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -33,21 +34,10 @@ class HomeViewBody extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 25),
+
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.35,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: FittedBox(
-                        fit: BoxFit.contain,
-                        child: Image.asset('assets/images/reelstate_img.png'),
-                      ),
-                    );
-                  },
-                  itemCount: 4,
-                ),
+                child: RecommendedRealestateImages(),
               ),
             ],
           ),
