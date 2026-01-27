@@ -39,6 +39,21 @@ class RealestateModel {
       date: DateTime.parse(json['date']),
     );
   }
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'price': price,
+      'type': type,
+      'images': images,
+      'roomsNumber': roomsNumber,
+      'bathroomsNumber': bathroomsNumber,
+      'area': area,
+      'desc': desc,
+      'address': address,
+      'id': id,
+      'date': date,
+    };
+  }
 }
 
 enum RealestateType { tamleek, egar }
