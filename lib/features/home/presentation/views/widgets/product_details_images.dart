@@ -43,7 +43,7 @@ class ProductDetailsImages extends StatelessWidget {
           ),
         ),
 
-        Positioned(left: 10, top: 10, child: CustomFavarateIcon()),
+        Positioned(left: 10, top: 10, child: CustomFavarateIcon(isFav: false)),
       ],
     );
   }

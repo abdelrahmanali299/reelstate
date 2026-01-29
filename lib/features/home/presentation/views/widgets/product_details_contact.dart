@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/user_img.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProductDetailsContact extends StatelessWidget {
   const ProductDetailsContact({super.key});
@@ -15,7 +16,10 @@ class ProductDetailsContact extends StatelessWidget {
           flex: 2,
           child: Column(
             children: [
-              Text('عبدالرحمن', style: AppTextStyles.bold16),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text('أحمد ندا', style: AppTextStyles.bold16),
+              ),
               Text('وسيط معتمد', style: AppTextStyles.medium12),
             ],
           ),
@@ -23,14 +27,17 @@ class ProductDetailsContact extends StatelessWidget {
 
         SizedBox(width: 5),
         Expanded(
-          child: Container(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.white,
-              border: Border.all(color: Colors.blue),
+          child: GestureDetector(
+            onTap: () => makeCall('⁦+20 10 04948025⁩'),
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.white,
+                border: Border.all(color: Colors.blue),
+              ),
+              child: Icon(Icons.smartphone),
             ),
-            child: Icon(Icons.smartphone),
           ),
         ),
         SizedBox(width: 5),
@@ -64,5 +71,13 @@ class ProductDetailsContact extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<void> makeCall(String phoneNumber) async {
+    final Uri uri = Uri.parse("tel:$phoneNumber");
+
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $uri';
+    }
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
+import 'package:reelstate/features/home/data/models/realestate_model.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/product_details_contact.dart';
 
 class ProductDetailsContactInfo extends StatelessWidget {
-  const ProductDetailsContactInfo({super.key});
-
+  const ProductDetailsContactInfo({super.key, required this.realestateModel});
+  final RealestateModel realestateModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,23 +23,30 @@ class ProductDetailsContactInfo extends StatelessWidget {
             IntrinsicWidth(child: ProductDetailsContact()),
             SizedBox(height: 10),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('الموقع', style: AppTextStyles.bold16),
-                Text(
-                  'عرض على الخريطة',
-                  style: AppTextStyles.bold14.copyWith(color: Colors.blue),
-                ),
-              ],
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Color(0xffE5E7EB)),
+                color: Color(0xffF1F5F9),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'الموقع: ',
+                    style: AppTextStyles.bold16.copyWith(color: Colors.grey),
+                  ),
+                  Flexible(
+                    child: Text(
+                      '${realestateModel.address.country}, ${realestateModel.address.state}, ${realestateModel.address.city}, ${realestateModel.address.street}',
+                      style: AppTextStyles.bold14.copyWith(color: Colors.blue),
+                    ),
+                  ),
+                ],
+              ),
             ),
 
-            SizedBox(height: 10),
-            Image.asset(
-              'assets/images/reelstate_img.png',
-              fit: BoxFit.fill,
-              width: double.infinity,
-            ),
             SizedBox(height: 16),
             Container(
               decoration: BoxDecoration(
@@ -50,12 +58,12 @@ class ProductDetailsContactInfo extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    'رقم الاعلان: 134563',
+                    'رقم الاعلان: ${realestateModel.id}',
                     style: AppTextStyles.bold14.copyWith(color: Colors.grey),
                   ),
                   Spacer(),
                   Text(
-                    'تاريخ النشر : منذ يومين',
+                    'تاريخ النشر : ${realestateModel.date.day}/${realestateModel.date.month}/${realestateModel.date.year}',
                     style: AppTextStyles.bold14.copyWith(color: Colors.grey),
                   ),
                 ],

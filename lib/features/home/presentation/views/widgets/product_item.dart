@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
 import 'package:reelstate/core/utils/widgets/custom_favarate_icon.dart';
+import 'package:reelstate/features/home/data/models/realestate_model.dart';
 
 class ProductItem extends StatelessWidget {
+  const ProductItem({
+    super.key,
+    this.productIndex = 0,
+    required this.realestateModel,
+  });
   final int productIndex;
-  const ProductItem({super.key, this.productIndex = 0});
-
+  final RealestateModel realestateModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +38,7 @@ class ProductItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  '1,200,000 جنيه',
+                  '${realestateModel.price} جنيه',
                   style: AppTextStyles.bold16.copyWith(
                     color: Colors.blue,
                     overflow: TextOverflow.ellipsis,
@@ -43,7 +48,7 @@ class ProductItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  'شقة للبيع ممتازة في وسط المدينة بمساحة 120 متر مربع',
+                  realestateModel.title,
                   style: AppTextStyles.semiBold14.copyWith(
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -52,7 +57,7 @@ class ProductItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  'المدينة، القاهرة',
+                  '${realestateModel.address.country}, ${realestateModel.address.state}, ${realestateModel.address.city}',
                   style: AppTextStyles.semiBold12.copyWith(
                     overflow: TextOverflow.ellipsis,
                     color: Color(0xff64748B),
@@ -61,7 +66,11 @@ class ProductItem extends StatelessWidget {
               ),
             ],
           ),
-          Positioned(top: 8, right: 5, child: CustomFavarateIcon()),
+          Positioned(
+            top: 8,
+            right: 5,
+            child: CustomFavarateIcon(isFav: realestateModel.isFav),
+          ),
         ],
       ),
     );

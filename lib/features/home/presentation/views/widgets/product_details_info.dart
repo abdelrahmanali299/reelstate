@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
+import 'package:reelstate/features/home/data/models/realestate_model.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/details_container.dart';
 
 class ProductDetailsInfo extends StatelessWidget {
-  const ProductDetailsInfo({super.key});
-
+  const ProductDetailsInfo({super.key, required this.realestateModel});
+  final RealestateModel realestateModel;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -12,13 +13,10 @@ class ProductDetailsInfo extends StatelessWidget {
       children: [
         ListTile(
           title: Text(
-            '750,000 جنيه',
+            '${realestateModel.price} جنيه',
             style: AppTextStyles.extraBold20.copyWith(color: Colors.blue),
           ),
-          subtitle: Text(
-            'شقة تمليك عصرية في حي العليا',
-            style: AppTextStyles.bold18,
-          ),
+          subtitle: Text(realestateModel.title, style: AppTextStyles.bold18),
           trailing: Container(
             padding: EdgeInsets.all(4),
             decoration: BoxDecoration(
@@ -27,7 +25,7 @@ class ProductDetailsInfo extends StatelessWidget {
               color: Color(0xffF1F5F9),
             ),
             child: Text(
-              'شقة تمليك',
+              realestateModel.type == RealestateType.egar ? 'ايجار' : 'تمليك',
               style: AppTextStyles.bold12.copyWith(color: Colors.blue),
             ),
           ),
@@ -39,13 +37,22 @@ class ProductDetailsInfo extends StatelessWidget {
           spacing: 12,
           children: [
             Expanded(
-              child: DetailsContainer(title: 'غرف', num: '5'),
+              child: DetailsContainer(
+                title: 'غرف',
+                num: realestateModel.roomsNumber.toString(),
+              ),
             ),
             Expanded(
-              child: DetailsContainer(title: 'دورات المياه', num: '2'),
+              child: DetailsContainer(
+                title: 'دورات المياه',
+                num: realestateModel.bathroomsNumber.toString(),
+              ),
             ),
             Expanded(
-              child: DetailsContainer(title: 'المساحه', num: '120 م²'),
+              child: DetailsContainer(
+                title: 'المساحه',
+                num: '${realestateModel.area} م²',
+              ),
             ),
           ],
         ),
@@ -53,7 +60,7 @@ class ProductDetailsInfo extends StatelessWidget {
         Text('الوصف', style: AppTextStyles.bold18),
         SizedBox(height: 8),
         Text(
-          'شقة تمليك عصرية تقع في حي العليا، تتميز بتصميم داخلي حديث ومساحات واسعة. تحتوي على 5 غرف نوم و2 دورات مياه، مع مطبخ مجهز بالكامل وغرفة معيشة مريحة. تقع الشقة في موقع استراتيجي بالقرب من المرافق الحيوية مثل المدارس والمستشفيات والمراكز التجارية.',
+          realestateModel.desc,
           style: AppTextStyles.regular16.copyWith(color: Color(0xff475569)),
         ),
       ],

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
+import 'package:reelstate/features/home/presentation/manager/home_cubits/get_realestates_cubit.dart/get_realestates_cubit.dart';
+import 'package:reelstate/features/home/presentation/views/show_all_realestates_view.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/home_app_bar.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/products_categories_grid.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/recommended_realestate_images.dart';
@@ -27,9 +30,24 @@ class HomeViewBody extends StatelessWidget {
                 children: [
                   Text('مرشحه لك', style: AppTextStyles.bold20),
                   Spacer(),
-                  Text(
-                    'عرض المزيد',
-                    style: AppTextStyles.bold14.copyWith(color: Colors.blue),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (innerContext) => BlocProvider.value(
+                            value: context.read<GetRealestatesCubit>(),
+                            child: ShowAllRealestatesView(),
+                          ),
+                        ),
+                      );
+
+                      context.read<GetRealestatesCubit>().getRealestates();
+                    },
+                    child: Text(
+                      'عرض المزيد',
+                      style: AppTextStyles.bold14.copyWith(color: Colors.blue),
+                    ),
                   ),
                 ],
               ),

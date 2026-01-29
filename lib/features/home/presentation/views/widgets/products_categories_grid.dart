@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reelstate/features/home/data/models/categories_model.dart';
+import 'package:reelstate/features/home/presentation/manager/home_cubits/get_realestates_cubit.dart/get_realestates_cubit.dart';
 import 'package:reelstate/features/home/presentation/views/egar_view.dart';
 import 'package:reelstate/features/home/presentation/views/tamleek_view.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/products_cat_grid_body.dart';
@@ -25,28 +27,34 @@ class ProductsCategoriesGrid extends StatelessWidget {
         crossAxisSpacing: 16,
         crossAxisCount: 2,
       ),
-      itemBuilder: (context, index) {
+      itemBuilder: (outerContext, index) {
         return GestureDetector(
           onTap: () {
             Navigator.push(
-              context,
+              outerContext,
               MaterialPageRoute(
                 builder: (context) {
                   switch (index) {
                     case 0:
-                      return TamleekView();
+                      return BlocProvider.value(
+                        value: outerContext.read<GetRealestatesCubit>(),
+                        child: TamleekView(),
+                      );
 
                     case 1:
-                      return EgarView();
+                      return BlocProvider.value(
+                        value: outerContext.read<GetRealestatesCubit>(),
+                        child: EgarView(),
+                      );
 
                     case 2:
-                      return TamleekView();
+                      return Scaffold();
 
                     case 3:
-                      return TamleekView();
+                      return Scaffold();
 
                     default:
-                      return TamleekView();
+                      return Scaffold();
                   }
                 },
               ),

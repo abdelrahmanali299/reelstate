@@ -5,8 +5,8 @@ import 'package:reelstate/features/home/data/models/realestate_model.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/filter_widget.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/product_grid.dart';
 
-class EgarViewBody extends StatelessWidget {
-  const EgarViewBody({super.key, required this.realestates});
+class ShowAllRealestatesBody extends StatelessWidget {
+  const ShowAllRealestatesBody({super.key, required this.realestates});
   final List<RealestateModel> realestates;
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class EgarViewBody extends StatelessWidget {
             Align(alignment: Alignment.centerRight, child: CustomBackButton()),
             Align(
               alignment: Alignment.center,
-              child: Text('شقق ايجار', style: AppTextStyles.extraBold18),
+              child: Text('كل الشقق', style: AppTextStyles.extraBold18),
             ),
           ],
         ),

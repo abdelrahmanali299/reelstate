@@ -20,6 +20,12 @@ dependencies:
 
   intl: ^0.20.2
   carousel_slider: ^5.1.1
+  firebase_core: ^4.4.0
+  cloud_firestore: ^6.1.2
+  dartz: ^0.10.1
+  get_it: ^9.2.0
+  skeletonizer: ^2.1.2
+  url_launcher: ^6.3.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -36,7 +42,7 @@ flutter:
   fonts:
     - family: Manrope
       fonts:
-        - asset: assets/fonts/
+        - asset: assets/fonts/Manrope-Regular.ttf
 
 # ---------------- SPLASH CONFIG ----------------
 flutter_native_splash:

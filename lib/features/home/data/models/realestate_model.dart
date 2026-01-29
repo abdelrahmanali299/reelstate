@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:reelstate/core/utils/models/realstate_address_model.dart';
+
 class RealestateModel {
   final String title;
   final num price;
@@ -7,7 +10,7 @@ class RealestateModel {
   final int bathroomsNumber;
   final num area;
   final String desc;
-  final String address;
+  final RealstateAddressModel address;
   final int id;
   final DateTime date;
   final bool isFav;
@@ -27,18 +30,39 @@ class RealestateModel {
     this.isFav = false,
   });
   factory RealestateModel.fromJson(Map<String, dynamic> json) {
+    // Parse `date` coming from Firestore which may be a `Timestamp`,
+    // or might be stored as an integer (millisecondsSinceEpoch) or string.
+    final dynamic dateValue = json['date'];
+    DateTime parsedDate;
+    if (dateValue is Timestamp) {
+      parsedDate = dateValue.toDate();
+    } else if (dateValue is int) {
+      parsedDate = DateTime.fromMillisecondsSinceEpoch(dateValue);
+    } else if (dateValue is String) {
+      parsedDate =
+          DateTime.tryParse(dateValue) ??
+          DateTime.fromMillisecondsSinceEpoch(int.tryParse(dateValue) ?? 0);
+    } else if (dateValue is DateTime) {
+      parsedDate = dateValue;
+    } else {
+      parsedDate = DateTime.now();
+    }
+
     return RealestateModel(
       title: json['title'],
       price: json['price'],
-      type: json['type'],
-      images: json['images'],
+      type: RealestateType.values.byName(json['type']),
+      images: List<String>.generate(
+        json['images'].length,
+        (i) => json['images'][i],
+      ),
       roomsNumber: json['roomsNumber'],
       bathroomsNumber: json['bathroomsNumber'],
       area: json['area'],
       desc: json['desc'],
-      address: json['address'],
+      address: RealstateAddressModel.fromJson(json['address']),
       id: json['id'],
-      date: DateTime.parse(json['date']),
+      date: parsedDate,
       isFav: json['isFav'],
     );
   }
@@ -46,15 +70,17 @@ class RealestateModel {
     return {
       'title': title,
       'price': price,
-      'type': type,
+      'type': type.name,
       'images': images,
       'roomsNumber': roomsNumber,
       'bathroomsNumber': bathroomsNumber,
       'area': area,
       'desc': desc,
-      'address': address,
+      'address': address.toJson(),
       'id': id,
-      'date': date,
+      // Store as Firestore Timestamp explicitly so Firestore receives a Timestamp
+      // Use `Timestamp.fromDate` which is available via cloud_firestore import
+      'date': Timestamp.fromDate(date),
       'isFav': isFav,
     };
   }
