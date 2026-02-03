@@ -14,7 +14,7 @@ class HomeSearchBar extends StatelessWidget {
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
       backgroundColor: WidgetStatePropertyAll(Colors.white),
-      hintText: 'Search for your dream home...',
+      hintText: 'ابحث عن منزل احلامك...',
       hintStyle: WidgetStatePropertyAll(
         AppTextStyles.regular16.copyWith(color: Color(0xff878B94)),
       ),
