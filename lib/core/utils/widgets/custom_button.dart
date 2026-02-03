@@ -10,6 +10,7 @@ class CustomButton extends StatefulWidget {
     this.width = double.infinity,
     this.height = 50,
     this.borderColor = Colors.white,
+    this.isLoading = false,
   });
 
   final String title;
@@ -19,6 +20,7 @@ class CustomButton extends StatefulWidget {
   final VoidCallback? onTap;
   final double width;
   final double height;
+  final bool isLoading;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -34,8 +36,17 @@ class _CustomButtonState extends State<CustomButton> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         side: BorderSide(color: widget.borderColor, width: 2),
       ),
-      onPressed: widget.onTap,
-      child: Text(widget.title, style: TextStyle(color: widget.titleColor)),
+      onPressed: widget.isLoading ? null : widget.onTap,
+      child: widget.isLoading
+          ? const SizedBox(
+              height: 22,
+              width: 22,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: Colors.white,
+              ),
+            )
+          : Text(widget.title, style: TextStyle(color: widget.titleColor)),
     );
   }
 }
