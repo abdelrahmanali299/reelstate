@@ -725,7 +725,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.16.0"
-<<<<<<< HEAD
   mgrs_dart:
     dependency: transitive
     description:
@@ -742,8 +741,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-=======
->>>>>>> main
   nested:
     dependency: transitive
     description:
