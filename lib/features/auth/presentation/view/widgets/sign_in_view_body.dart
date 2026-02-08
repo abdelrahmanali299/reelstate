@@ -15,27 +15,23 @@ class SignInViewBody extends StatefulWidget {
 }
 
 class _SignInViewBodyState extends State<SignInViewBody> {
-
-
   @override
   Widget build(BuildContext signIncontext) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(height: 60),
             Image.asset('assets/images/sign in.png', width: 150, height: 150),
             Text(
               'بوابتك نحو الحياه العصرية',
-              style: AppTextStyles.regular14.copyWith(
-                color: Color(0xff64748B),
-              ),
+              style: AppTextStyles.regular14.copyWith(color: Color(0xff64748B)),
             ),
             const SizedBox(height: 26),
             const Text('مرحبا', style: AppTextStyles.bold24),
             SizedBox(height: 20),
-           SigninTextFieldsSection(),
+            SigninTextFieldsSection(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -67,6 +63,4 @@ class _SignInViewBodyState extends State<SignInViewBody> {
       ),
     );
   }
-
-  
 }

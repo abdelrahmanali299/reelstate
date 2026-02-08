@@ -30,14 +30,14 @@ class FireStoreService {
   }) async {
     Query<Map<String, dynamic>> data = _firestore.collection(path);
     if (query != null) {
+      if (query['where'] != null && query['value'] != null) {
+        data = data.where(query['where'], isEqualTo: query['value']);
+      }
       if (query['orderBy'] != null) {
         data = data.orderBy(query['orderBy'], descending: query['descending']);
       }
       if (query['limit'] != null) {
         data = data.limit(query['limit']);
-      }
-      if (query['where'] != null) {
-        data = data.where(query['where'], isEqualTo: query['value']);
       }
     }
 

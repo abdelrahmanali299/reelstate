@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:reelstate/features/auth/data/model/user_model.dart';
@@ -6,14 +8,18 @@ import 'package:reelstate/features/auth/data/repo/auth_repo.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
+  @override
+  void onChange(Change<AuthState> change) {
+    super.onChange(change);
+    log(change.toString());
+  }
+
   AuthCubit(this.authRepo) : super(AuthInitial());
   final AuthRepo authRepo;
   Future<void> signUp({required UserModel userModel}) async {
     emit(SignUpLoading());
     final result = await authRepo.signUp(userModel: userModel);
-    result.fold((failure) => emit(SignUpFailure(message: failure.message)), (
-      signup,
-    ) {
+    result.fold((failure) => emit(SignUpFailure(message: failure)), (signup) {
       emit(SignUpSuccess());
     });
   }
@@ -23,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await authRepo.signIn(email: email, password: password);
     return result.fold(
       (failure) {
-        emit(SignInFailure(message: failure.message));
+        emit(SignInFailure(message: failure));
       },
       (signin) {
         emit(SignInSuccess(userModel: signin));
@@ -34,11 +40,10 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> forgotPassword({required String email}) async {
     emit(ForgotPasswordloading());
     final result = await authRepo.forgotPassword(email: email);
-    result.fold(
-      (failure) => emit(ForgotPasswordFailure(message: failure.message)),
-      (forgotPassword) {
-        emit(ForgotPasswordSuccess());
-      },
-    );
+    result.fold((failure) => emit(ForgotPasswordFailure(message: failure)), (
+      forgotPassword,
+    ) {
+      emit(ForgotPasswordSuccess());
+    });
   }
 }

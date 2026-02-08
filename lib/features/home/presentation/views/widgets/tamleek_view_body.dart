@@ -4,6 +4,7 @@ import 'package:reelstate/core/utils/widgets/custom_back_button.dart';
 import 'package:reelstate/features/home/data/models/realestate_model.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/filter_widget.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/product_grid.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class TamleekViewBody extends StatelessWidget {
   const TamleekViewBody({super.key, required this.realestates});
@@ -24,7 +25,7 @@ class TamleekViewBody extends StatelessWidget {
           ],
         ),
         SizedBox(height: 24),
-        FilterWidget(),
+        FilterWidget(type: RealestateType.tamleek),
         SizedBox(height: 30),
         Text('${realestates.length}  نتايج', style: AppTextStyles.extraBold20),
         SizedBox(height: 16),

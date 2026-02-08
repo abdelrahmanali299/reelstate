@@ -1,9 +1,7 @@
+import 'package:reelstate/core/models/address_model.dart';
 
 class UserModel {
-  final String? country;
-  final String? city;
-  final String? state;
-  final String? street;
+  final AddressModel addressModel;
   String? id;
   final String? email;
   final String? password;
@@ -11,10 +9,7 @@ class UserModel {
   final String? phone;
   UserModel({
     this.id,
-    required this.country,
-    required this.city,
-    required this.state,
-    required this.street,
+    required this.addressModel,
     required this.email,
     required this.password,
     required this.name,
@@ -28,10 +23,7 @@ class UserModel {
       password: json['password'],
       name: json['name'],
       phone: json['phone'],
-      country: 'country',
-      city: 'city',
-      state: 'state',
-      street: 'street',
+      addressModel: AddressModel.fromJson(json['addressModel'] ?? {}),
     );
   }
 
@@ -41,9 +33,6 @@ class UserModel {
     'password': password,
     'name': name,
     'phone': phone,
-    'country': country,
-    'city': city,
-    'state': state,
-    'street': street,
+    'addressModel': addressModel.toJson(),
   };
 }

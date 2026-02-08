@@ -8,10 +8,15 @@ class HomeRepoImpl extends HomeRepo {
   final FireStoreService fireStoreService;
 
   HomeRepoImpl({required this.fireStoreService});
+
   @override
-  Future<Either<String, List<RealestateModel>>> getAllRealestates() async {
+  Future<Either<String, List<RealestateModel>>> getRealestates({
+    required RealestateType? type,
+  }) async {
     try {
       var result = await fireStoreService.getDataList(
+        query: {"where": "type", "value": type?.name},
+
         path: FireStoreCollections.realestateCollection,
       );
       return Right(
@@ -23,11 +28,19 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<String, List<RealestateModel>>> getEgarRealestates() async {
+  Future<Either<String, List<RealestateModel>>> getRealestatesOrderByPrice({
+    required bool descending,
+    required RealestateType? type,
+  }) async {
     try {
       var result = await fireStoreService.getDataList(
-        query: {"where": "type", "value": RealestateType.egar.name},
         path: FireStoreCollections.realestateCollection,
+        query: {
+          "orderBy": "price",
+          "descending": descending,
+          "where": "type",
+          "value": type?.name,
+        },
       );
       return Right(
         result.map((item) => RealestateModel.fromJson(item)).toList(),
@@ -38,12 +51,25 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<String, List<RealestateModel>>> getTamleekRealestates() async {
+  Future<Either<String, List<RealestateModel>>> getRealestatesOrderByAddress() {
+    // TODO: implement getRealestatesOrderByAddress
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<String, List<RealestateModel>>> getRealestatesOrderByArea({
+    required bool descending,
+    required RealestateType? type,
+  }) async {
     try {
       var result = await fireStoreService.getDataList(
-        query: {"where": "type", "value": RealestateType.tamleek.name},
-
         path: FireStoreCollections.realestateCollection,
+        query: {
+          "orderBy": "area",
+          "descending": descending,
+          "where": "type",
+          "value": type?.name,
+        },
       );
       return Right(
         result.map((item) => RealestateModel.fromJson(item)).toList(),

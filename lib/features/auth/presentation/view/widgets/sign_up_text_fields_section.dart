@@ -3,10 +3,12 @@ import 'dart:developer';
 import 'package:csc_picker_plus/csc_picker_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reelstate/core/models/address_model.dart';
 import 'package:reelstate/core/services/function/custom_snack_bar.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
 import 'package:reelstate/core/utils/widgets/custem_text_field.dart';
 import 'package:reelstate/core/utils/widgets/custom_button.dart';
+import 'package:reelstate/core/utils/widgets/pick_location.dart';
 import 'package:reelstate/features/auth/data/model/user_model.dart';
 import 'package:reelstate/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 
@@ -25,9 +27,7 @@ class _SignUpTextFieldsSectionState extends State<SignUpTextFieldsSection> {
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
   final streetController = TextEditingController();
-  String? countryValue;
-  String? stateValue;
-  String? cityValue;
+  AddressModel addressModel = AddressModel();
   @override
   Widget build(BuildContext context) {
     return  BlocListener<AuthCubit, AuthState>(
@@ -133,21 +133,17 @@ class _SignUpTextFieldsSectionState extends State<SignUpTextFieldsSection> {
                 children: [
                   Text('بيانات العنوان', style: AppTextStyles.bold18),
                   const SizedBox(height: 16),
-
-                  CSCPickerPlus(
-                    cityLanguage: CityLanguage.native,
-                    countryStateLanguage: CountryStateLanguage.arabic,
-                    onCountryChanged: (value) {
-                      countryValue = value;
+                  PickLocation(
+                    onCountryChanged: (country) {
+                      addressModel.country = country;
                     },
-                    onStateChanged: (value) {
-                      stateValue = value;
+                    onStateChanged: (state) {
+                      addressModel.state = state;
                     },
-                    onCityChanged: (value) {
-                      cityValue = value;
+                    onCityChanged: (city) {
+                      addressModel.city = city;
                     },
                   ),
-
                   const SizedBox(height: 16),
 
                   CustomTextField(
@@ -163,9 +159,10 @@ class _SignUpTextFieldsSectionState extends State<SignUpTextFieldsSection> {
                     color: const Color(0xff11D4C4),
                     titleColor: Colors.white,
                     onTap: () {
-                      if (countryValue == null ||
-                          cityValue == null ||
-                          stateValue == null ||
+                      print(addressModel.toJson());
+                      if (addressModel.country == null ||
+                          addressModel.city == null ||
+                          addressModel.state == null ||
                           streetController.text.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -184,17 +181,14 @@ class _SignUpTextFieldsSectionState extends State<SignUpTextFieldsSection> {
 
                         return;
                       }
-
+                      addressModel.street = streetController.text;
                       context.read<AuthCubit>().signUp(
                         userModel: UserModel(
                           name: nameController.text,
                           email: emailController.text,
                           phone: phoneController.text,
                           password: passwordController.text,
-                          country: countryValue!,
-                          state: stateValue!,
-                          city: cityValue!,
-                          street: streetController.text,
+                          addressModel: addressModel,
                         ),
                       );
 

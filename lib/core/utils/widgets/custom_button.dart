@@ -29,24 +29,17 @@ class CustomButton extends StatefulWidget {
 class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        minimumSize: Size(widget.width, widget.height),
-        backgroundColor: widget.color,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        side: BorderSide(color: widget.borderColor, width: 2),
+    return TextButton(
+      style: TextButton.styleFrom(
+        fixedSize: Size(widget.width, widget.height),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: BorderSide(color: widget.borderColor),
+        ),
+        backgroundColor: Colors.blue,
       ),
-      onPressed: widget.isLoading ? null : widget.onTap,
-      child: widget.isLoading
-          ? const SizedBox(
-              height: 22,
-              width: 22,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: Colors.white,
-              ),
-            )
-          : Text(widget.title, style: TextStyle(color: widget.titleColor)),
+      onPressed: widget.onTap,
+      child: Text(widget.title, style: TextStyle(color: widget.titleColor)),
     );
   }
 }

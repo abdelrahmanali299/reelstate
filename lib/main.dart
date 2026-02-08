@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:reelstate/core/models/address_model.dart';
 import 'package:reelstate/core/services/fire_store_service.dart';
 import 'package:reelstate/core/services/get_it_service.dart';
-import 'package:reelstate/core/utils/models/realstate_address_model.dart';
+import 'package:reelstate/features/auth/presentation/view/sign_in_view.dart';
 import 'package:reelstate/features/home/data/models/realestate_model.dart';
-import 'package:reelstate/features/layout/presentation/views/layout_view.dart';
 import 'package:reelstate/firebase_options.dart';
 
 void main() async {
@@ -26,10 +26,10 @@ void main() async {
       ],
       roomsNumber: 5,
       bathroomsNumber: 3,
-      area: 130,
+      area: 2000,
       desc:
           'شقة فاخرة تقع في قلب حي العليا، تتميز بتصميم عصري وتشطيبات عالية الجودة. الشقة في الطابق الرابع وتطل على حديقة الحي، مما يوفر هدوءاً وخصوصية تامة.',
-      address: RealstateAddressModel(
+      address: AddressModel(
         street: 'شارع محمد سلمى',
         city: 'المحلة الكبرى',
         state: 'الغربية',
@@ -57,7 +57,7 @@ void main() async {
       area: 180,
       desc:
           'شقة فاخرة تقع في قلب حي العليا، تتميز بتصميم عصري وتشطيبات عالية الجودة. الشقة في الطابق الرابع وتطل على حديقة الحي، مما يوفر هدوءاً وخصوصية تامة.',
-      address: RealstateAddressModel(
+      address: AddressModel(
         street: 'شارع محمد سلمى',
         city: 'المحلة الكبرى',
         state: 'الغربية',
@@ -85,7 +85,7 @@ void main() async {
       area: 250,
       desc:
           'شقة فاخرة تقع في قلب حي العليا، تتميز بتصميم عصري وتشطيبات عالية الجودة. الشقة في الطابق الرابع وتطل على حديقة الحي، مما يوفر هدوءاً وخصوصية تامة.',
-      address: RealstateAddressModel(
+      address: AddressModel(
         street: 'شارع محمد سلمى',
         city: 'المحلة الكبرى',
         state: 'الغربية',
@@ -114,7 +114,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       debugShowCheckedModeBanner: false,
-      home: LayoutView(),
+      home: SignInView(),
     );
   }
 }

@@ -24,7 +24,7 @@ class ShowAllRealestatesBody extends StatelessWidget {
           ],
         ),
         SizedBox(height: 24),
-        FilterWidget(),
+        FilterWidget(type: null),
         SizedBox(height: 30),
         Text('${realestates.length}  نتايج', style: AppTextStyles.extraBold20),
         SizedBox(height: 16),

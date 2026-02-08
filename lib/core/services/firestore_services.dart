@@ -49,7 +49,7 @@ class FirestoreService {
     if (query?['where'] != null) {
       var res = await _firestore
           .collection(mainPath)
-          .where('name', isEqualTo: query?['where'])
+          .where('email', isEqualTo: query?['where'])
           .get();
       if (res.docs.isEmpty) {
         return null;
@@ -117,7 +117,7 @@ class FirestoreService {
     await docRef.update(data ?? {});
   }
 
- Future<bool> isUserExist(String userName, String mainPath) async {
+  Future<bool> isUserExist(String userName, String mainPath) async {
     final res = await _firestore
         .collection(mainPath)
         .where('name', isEqualTo: userName)

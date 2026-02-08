@@ -1,4 +1,4 @@
-import 'package:reelstate/core/utils/models/realstate_address_model.dart';
+import 'package:reelstate/core/models/address_model.dart';
 import 'package:reelstate/features/home/data/models/realestate_model.dart';
 
 List<RealestateModel> getDummyRealestates() {
@@ -18,7 +18,7 @@ List<RealestateModel> getDummyRealestates() {
       area: 180,
       desc:
           'شقة فاخرة تقع في قلب حي العليا، تتميز بتصميم عصري وتشطيبات عالية الجودة. الشقة في الطابق الرابع وتطل على حديقة الحي، مما يوفر هدوءاً وخصوصية تامة.',
-      address: RealstateAddressModel(
+      address: AddressModel(
         street: 'شارع محمد سلمى',
         city: 'المحلة الكبرى',
         state: 'الغربية',

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reelstate/core/utils/get_dummy_realestates.dart';
 import 'package:reelstate/core/utils/widgets/custom_error.dart';
+import 'package:reelstate/features/home/data/models/realestate_model.dart';
+import 'package:reelstate/features/home/presentation/manager/home_cubits/filter_realestates_cubit/filter_realestates_cubit.dart';
 import 'package:reelstate/features/home/presentation/manager/home_cubits/get_realestates_cubit.dart/get_realestates_cubit.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/tamleek_view_body.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -17,7 +19,11 @@ class _TamleekViewState extends State<TamleekView> {
   @override
   void initState() {
     super.initState();
-    context.read<GetRealestatesCubit>().getTamleekRealestates();
+    context.read<FilterRealestatesCubit>().currentCategoryIndex =
+        context.read<FilterRealestatesCubit>().currentSubCategoryIndex = -1;
+    context.read<GetRealestatesCubit>().getRealestates(
+      type: RealestateType.tamleek,
+    );
   }
 
   @override
@@ -32,7 +38,27 @@ class _TamleekViewState extends State<TamleekView> {
                 return CustomError(message: state.error);
               }
               if (state is GetRealestatesSuccess) {
-                return TamleekViewBody(realestates: state.realestates);
+                List<RealestateModel> realestates = state.realestates;
+                return BlocConsumer<
+                  FilterRealestatesCubit,
+                  FilterRealestatesState
+                >(
+                  listener: (context, state) {
+                    if (state is FilterRealestatesCubitSuccess) {
+                      realestates = state.realestates;
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is FilterRealestatesCubitLoading) {
+                      return Skeletonizer(
+                        child: TamleekViewBody(
+                          realestates: getDummyRealestates(),
+                        ),
+                      );
+                    }
+                    return TamleekViewBody(realestates: realestates);
+                  },
+                );
               }
 
               return Skeletonizer(

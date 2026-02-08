@@ -23,25 +23,19 @@ class FirebaseService {
     required UserModel userModel,
     required String mainPath,
   }) async {
-   
-      final userCredential = await _auth.createUserWithEmailAndPassword(
-        email: userModel.email??'',
-        password: userModel.password??'',
-      );
-          final uid = userCredential.user!.uid;
+    final userCredential = await _auth.createUserWithEmailAndPassword(
+      email: userModel.email ?? '',
+      password: userModel.password ?? '',
+    );
+    final uid = userCredential.user!.uid;
 
-      await _firestore.collection(mainPath).doc(uid).set({
-        'id':uid,
-        'email': userModel.email,
-        'name': userModel.name,
-        'phone': userModel.phone,
-        'country': userModel.country,
-        'city': userModel.city,
-        'state': userModel.state,
-        'street': userModel.street,
-      });
-      return userCredential;
-  
+    await _firestore.collection(mainPath).doc(uid).set({
+      'id': uid,
+      'email': userModel.email,
+      'name': userModel.name,
+      'phone': userModel.phone,
+      'addressModel': userModel.addressModel.toJson(),
+    });
+    return userCredential;
   }
-  
 }
