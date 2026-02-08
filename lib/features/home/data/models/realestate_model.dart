@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:reelstate/core/utils/models/realstate_address_model.dart';
+import 'package:reelstate/core/models/address_model.dart';
 
 class RealestateModel {
   final String title;
@@ -10,7 +10,7 @@ class RealestateModel {
   final int bathroomsNumber;
   final num area;
   final String desc;
-  final RealstateAddressModel address;
+  final AddressModel address;
   final int id;
   final DateTime date;
   final bool isFav;
@@ -58,7 +58,7 @@ class RealestateModel {
       bathroomsNumber: json['bathroomsNumber'],
       area: json['area'],
       desc: json['desc'],
-      address: RealstateAddressModel.fromJson(json['address']),
+      address: AddressModel.fromJson(json['address']),
       id: json['id'],
       date: parsedDate,
       isFav: json['isFav'],
