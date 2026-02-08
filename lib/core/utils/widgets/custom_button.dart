@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reelstate/core/utils/app_text_styles.dart';
 
 class CustomButton extends StatefulWidget {
   const CustomButton({
@@ -11,6 +10,7 @@ class CustomButton extends StatefulWidget {
     this.width = double.infinity,
     this.height = 50,
     this.borderColor = Colors.white,
+    this.isLoading = false,
   });
 
   final String title;
@@ -20,6 +20,7 @@ class CustomButton extends StatefulWidget {
   final VoidCallback? onTap;
   final double width;
   final double height;
+  final bool isLoading;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -38,10 +39,7 @@ class _CustomButtonState extends State<CustomButton> {
         backgroundColor: Colors.blue,
       ),
       onPressed: widget.onTap,
-      child: Text(
-        widget.title,
-        style: AppTextStyles.bold18.copyWith(color: widget.titleColor),
-      ),
+      child: Text(widget.title, style: TextStyle(color: widget.titleColor)),
     );
   }
 }

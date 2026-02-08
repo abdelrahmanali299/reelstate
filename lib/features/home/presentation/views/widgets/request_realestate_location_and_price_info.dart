@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:reelstate/core/models/address_model.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
+import 'package:reelstate/core/utils/widgets/pick_location.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/custom_area_box.dart';
-import 'package:reelstate/features/home/presentation/views/widgets/pick_location.dart';
 
 class RequestRealestateLocationAndPriceInfo extends StatelessWidget {
   const RequestRealestateLocationAndPriceInfo({super.key});
@@ -17,7 +18,14 @@ class RequestRealestateLocationAndPriceInfo extends StatelessWidget {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 16),
-        PickLocation(),
+        // PickLocation(
+        //   addressModel: AddressModel(
+        //     country: 'country',
+        //     city: 'city',
+        //     state: 'state',
+        //     street: 'street',
+        //   ),
+        // ),
         SizedBox(height: 20),
 
         Divider(),

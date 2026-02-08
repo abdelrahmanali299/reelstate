@@ -14,12 +14,12 @@ class CustomTextField extends StatefulWidget {
     this.fillColor = const Color(0xffEDEDED),
     this.focusBorderColor,
     this.readOnly = false,
-    this.labelText = '',
+    this.labelText,
+    this.hintStyle,
+    this.keyboardType,
     this.borderColor = Colors.white,
     this.labelStyle,
     this.floatingLabelBehavior,
-    this.hintStyle,
-    this.keyboardType,
   });
   final String hint;
   final int maxlines;
@@ -32,7 +32,7 @@ class CustomTextField extends StatefulWidget {
   final Color fillColor;
   final Color? focusBorderColor;
   final bool readOnly;
-  final String labelText;
+  final String? labelText;
   final Color borderColor;
   final TextStyle? labelStyle, hintStyle;
   final FloatingLabelBehavior? floatingLabelBehavior;

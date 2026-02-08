@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:reelstate/core/services/fire_store_service.dart';
 import 'package:reelstate/core/services/get_it_service.dart';
 import 'package:reelstate/core/utils/models/realstate_address_model.dart';
+import 'package:reelstate/features/auth/presentation/view/sign_in_view.dart';
 import 'package:reelstate/features/home/data/models/realestate_model.dart';
 import 'package:reelstate/features/layout/presentation/views/layout_view.dart';
 import 'package:reelstate/firebase_options.dart';
@@ -114,7 +115,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       debugShowCheckedModeBanner: false,
-      home: LayoutView(),
+      home: SignInView(),
     );
   }
 }
