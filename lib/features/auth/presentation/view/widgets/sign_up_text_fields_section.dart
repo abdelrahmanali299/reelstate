@@ -30,7 +30,7 @@ class _SignUpTextFieldsSectionState extends State<SignUpTextFieldsSection> {
   String? cityValue;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
+    return  BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
           customSnackBar(context, 'sign up successfully', Colors.green);
@@ -39,8 +39,8 @@ class _SignUpTextFieldsSectionState extends State<SignUpTextFieldsSection> {
           log(state.message);
         }
       },
-      builder: (context, state) {
-        return Form(
+
+        child:  Form(
           key: formKey,
           autovalidateMode: autovalidateMode,
           child: Column(
@@ -105,8 +105,8 @@ class _SignUpTextFieldsSectionState extends State<SignUpTextFieldsSection> {
               ),
             ],
           ),
-        );
-      },
+        )
+      
     );
   }
 
