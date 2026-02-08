@@ -16,7 +16,10 @@ class ProductDetailsInfo extends StatelessWidget {
             '${realestateModel.price} جنيه',
             style: AppTextStyles.extraBold20.copyWith(color: Colors.blue),
           ),
-          subtitle: Text(realestateModel.title, style: AppTextStyles.bold18),
+          subtitle: Text(
+            realestateModel.title ?? 'No Title',
+            style: AppTextStyles.bold18,
+          ),
           trailing: Container(
             padding: EdgeInsets.all(4),
             decoration: BoxDecoration(
@@ -60,7 +63,7 @@ class ProductDetailsInfo extends StatelessWidget {
         Text('الوصف', style: AppTextStyles.bold18),
         SizedBox(height: 8),
         Text(
-          realestateModel.desc,
+          realestateModel.desc ?? 'No Description',
           style: AppTextStyles.regular16.copyWith(color: Color(0xff475569)),
         ),
       ],

@@ -78,4 +78,19 @@ class HomeRepoImpl extends HomeRepo {
       return Left(e.toString());
     }
   }
+
+  @override
+  Future<Either<String, void>> requestMyRealestate({
+    required RealestateModel realestateModel,
+  }) async {
+    try {
+      await fireStoreService.addData(
+        path: FireStoreCollections.requestedRealestateCollection,
+        data: realestateModel.toJson(),
+      );
+      return Right(null);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

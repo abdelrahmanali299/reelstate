@@ -8,8 +8,7 @@ class RequestRealestateInitial extends RequestRealestateState {}
 class RequestRealestateLoading extends RequestRealestateState {}
 
 class RequestRealestateSuccess extends RequestRealestateState {
-  final RealestateModel realestateModel;
-  RequestRealestateSuccess(this.realestateModel);
+  RequestRealestateSuccess();
 }
 
 class RequestRealestateError extends RequestRealestateState {

@@ -15,4 +15,7 @@ abstract class HomeRepo {
     required RealestateType? type,
   });
   Future<Either<String, List<RealestateModel>>> getRealestatesOrderByAddress();
+  Future<Either<String, void>> requestMyRealestate({
+    required RealestateModel realestateModel,
+  });
 }

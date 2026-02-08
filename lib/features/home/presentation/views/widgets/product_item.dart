@@ -48,7 +48,7 @@ class ProductItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  realestateModel.title,
+                  realestateModel.title ?? 'No Title',
                   style: AppTextStyles.semiBold14.copyWith(
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -57,7 +57,7 @@ class ProductItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  '${realestateModel.address.country}, ${realestateModel.address.state}, ${realestateModel.address.city}',
+                  '${realestateModel.address?.country}, ${realestateModel.address?.state}, ${realestateModel.address?.city}',
                   style: AppTextStyles.semiBold12.copyWith(
                     overflow: TextOverflow.ellipsis,
                     color: Color(0xff64748B),
@@ -69,7 +69,7 @@ class ProductItem extends StatelessWidget {
           Positioned(
             top: 8,
             right: 5,
-            child: CustomFavarateIcon(isFav: realestateModel.isFav),
+            child: CustomFavarateIcon(isFav: realestateModel.isFav ?? false),
           ),
         ],
       ),

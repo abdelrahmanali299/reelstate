@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
+import 'package:reelstate/features/home/data/models/realestate_model.dart';
+import 'package:reelstate/features/home/presentation/manager/home_cubits/request_realestate_cubit/request_realestate_cubit.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/custom_area_box.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/custom_type_box.dart';
 
@@ -12,13 +15,13 @@ class RealestateRequestDetails extends StatefulWidget {
 }
 
 class _RealestateRequestDetailsState extends State<RealestateRequestDetails> {
-  int bedrooms = 3;
-  int bathrooms = 2;
-  double minArea = 80;
+  double minArea = 20;
   double maxArea = 1000;
-
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<RequestRealestateCubit>();
+    RealestateModel realestateModel = cubit.realestateModel;
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,11 +36,19 @@ class _RealestateRequestDetailsState extends State<RealestateRequestDetails> {
           _buildStepper(
             icon: Icons.bed,
             label: "عدد الغرف",
-            value: bedrooms,
+            value: realestateModel.roomsNumber ?? 0,
             onMinus: () {
-              if (bedrooms > 0) setState(() => bedrooms--);
+              if (realestateModel.roomsNumber! > 0) {
+                setState(() {
+                  realestateModel.roomsNumber =
+                      (realestateModel.roomsNumber ?? 0) - 1;
+                });
+              }
             },
-            onPlus: () => setState(() => bedrooms++),
+            onPlus: () => setState(
+              () => realestateModel.roomsNumber =
+                  (realestateModel.roomsNumber ?? 0) + 1,
+            ),
           ),
 
           const SizedBox(height: 16),
@@ -45,11 +56,19 @@ class _RealestateRequestDetailsState extends State<RealestateRequestDetails> {
           _buildStepper(
             icon: Icons.bathtub,
             label: "عدد الحمّامات",
-            value: bathrooms,
+            value: realestateModel.bathroomsNumber ?? 0,
             onMinus: () {
-              if (bathrooms > 0) setState(() => bathrooms--);
+              if (realestateModel.bathroomsNumber! > 0) {
+                setState(() {
+                  realestateModel.bathroomsNumber =
+                      (realestateModel.bathroomsNumber ?? 0) - 1;
+                });
+              }
             },
-            onPlus: () => setState(() => bathrooms++),
+            onPlus: () => setState(
+              () => realestateModel.bathroomsNumber =
+                  (realestateModel.bathroomsNumber ?? 0) + 1,
+            ),
           ),
 
           const SizedBox(height: 20),
@@ -92,6 +111,8 @@ class _RealestateRequestDetailsState extends State<RealestateRequestDetails> {
               setState(() {
                 minArea = value.start;
                 maxArea = value.end;
+                realestateModel.minArea = minArea.toInt();
+                realestateModel.maxArea = maxArea.toInt();
               });
             },
           ),
