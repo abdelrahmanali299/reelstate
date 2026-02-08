@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reelstate/features/home/data/models/categories_model.dart';
+import 'package:reelstate/features/home/presentation/manager/home_cubits/filter_realestates_cubit/filter_realestates_cubit.dart';
 import 'package:reelstate/features/home/presentation/manager/home_cubits/get_realestates_cubit.dart/get_realestates_cubit.dart';
 import 'package:reelstate/features/home/presentation/views/egar_view.dart';
+import 'package:reelstate/features/home/presentation/views/request_your_realestate_view.dart';
 import 'package:reelstate/features/home/presentation/views/tamleek_view.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/products_cat_grid_body.dart';
 
@@ -12,7 +14,7 @@ class ProductsCategoriesGrid extends StatelessWidget {
     CategoriesModel(title: 'شقق تمليك', img: 'assets/images/tamleek.png'),
     CategoriesModel(title: 'شقق ايجار', img: 'assets/images/egar.jpg'),
     CategoriesModel(
-      title: 'صمم شقتك على مزاجك',
+      title: 'صمم شقتك',
       img: 'assets/images/design_your_reelstate.png',
     ),
     CategoriesModel(title: 'تشطيبات', img: 'assets/images/tashteep.png'),
@@ -36,19 +38,33 @@ class ProductsCategoriesGrid extends StatelessWidget {
                 builder: (context) {
                   switch (index) {
                     case 0:
-                      return BlocProvider.value(
-                        value: outerContext.read<GetRealestatesCubit>(),
+                      return MultiBlocProvider(
+                        providers: [
+                          BlocProvider.value(
+                            value: outerContext.read<GetRealestatesCubit>(),
+                          ),
+                          BlocProvider.value(
+                            value: outerContext.read<FilterRealestatesCubit>(),
+                          ),
+                        ],
                         child: TamleekView(),
                       );
 
                     case 1:
-                      return BlocProvider.value(
-                        value: outerContext.read<GetRealestatesCubit>(),
+                      return MultiBlocProvider(
+                        providers: [
+                          BlocProvider.value(
+                            value: outerContext.read<GetRealestatesCubit>(),
+                          ),
+                          BlocProvider.value(
+                            value: outerContext.read<FilterRealestatesCubit>(),
+                          ),
+                        ],
                         child: EgarView(),
                       );
 
                     case 2:
-                      return Scaffold();
+                      return RequestYourRealestateView();
 
                     case 3:
                       return Scaffold();

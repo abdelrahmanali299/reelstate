@@ -17,7 +17,9 @@ class CustomTextField extends StatefulWidget {
     this.labelText = '',
     this.borderColor = Colors.white,
     this.labelStyle,
-    this.floatingLabelBehavior
+    this.floatingLabelBehavior,
+    this.hintStyle,
+    this.keyboardType,
   });
   final String hint;
   final int maxlines;
@@ -32,8 +34,9 @@ class CustomTextField extends StatefulWidget {
   final bool readOnly;
   final String labelText;
   final Color borderColor;
-  final TextStyle? labelStyle;
+  final TextStyle? labelStyle, hintStyle;
   final FloatingLabelBehavior? floatingLabelBehavior;
+  final TextInputType? keyboardType;
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
@@ -43,6 +46,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: widget.keyboardType,
       readOnly: widget.readOnly,
       controller: widget.controller,
       onChanged: widget.onChanged,
@@ -57,6 +61,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       maxLines: widget.maxlines,
       obscureText: !isPasswordVisible && widget.isPassword,
       decoration: InputDecoration(
+        hintStyle: widget.hintStyle,
         floatingLabelBehavior: widget.floatingLabelBehavior,
         labelStyle: widget.labelStyle,
         labelText: widget.labelText,

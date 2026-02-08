@@ -30,8 +30,6 @@ class RealestateModel {
     this.isFav = false,
   });
   factory RealestateModel.fromJson(Map<String, dynamic> json) {
-    // Parse `date` coming from Firestore which may be a `Timestamp`,
-    // or might be stored as an integer (millisecondsSinceEpoch) or string.
     final dynamic dateValue = json['date'];
     DateTime parsedDate;
     if (dateValue is Timestamp) {
@@ -78,8 +76,6 @@ class RealestateModel {
       'desc': desc,
       'address': address.toJson(),
       'id': id,
-      // Store as Firestore Timestamp explicitly so Firestore receives a Timestamp
-      // Use `Timestamp.fromDate` which is available via cloud_firestore import
       'date': Timestamp.fromDate(date),
       'isFav': isFav,
     };

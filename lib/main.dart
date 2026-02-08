@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:get_it/get_it.dart';
 import 'package:reelstate/core/services/fire_store_service.dart';
 import 'package:reelstate/core/services/get_it_service.dart';
 import 'package:reelstate/core/utils/models/realstate_address_model.dart';
@@ -27,7 +26,7 @@ void main() async {
       ],
       roomsNumber: 5,
       bathroomsNumber: 3,
-      area: 130,
+      area: 2000,
       desc:
           'شقة فاخرة تقع في قلب حي العليا، تتميز بتصميم عصري وتشطيبات عالية الجودة. الشقة في الطابق الرابع وتطل على حديقة الحي، مما يوفر هدوءاً وخصوصية تامة.',
       address: RealstateAddressModel(

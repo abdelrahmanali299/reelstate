@@ -26,6 +26,8 @@ dependencies:
   get_it: ^9.2.0
   skeletonizer: ^2.1.2
   url_launcher: ^6.3.2
+  csc_picker: ^0.2.7
+  confetti: ^0.8.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
