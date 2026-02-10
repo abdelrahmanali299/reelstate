@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:reelstate/core/services/cache_helper.dart';
 import 'package:reelstate/features/auth/data/model/user_model.dart';
 import 'package:reelstate/features/auth/data/repo/auth_repo.dart';
 
@@ -20,6 +21,8 @@ class AuthCubit extends Cubit<AuthState> {
     emit(SignUpLoading());
     final result = await authRepo.signUp(userModel: userModel);
     result.fold((failure) => emit(SignUpFailure(message: failure)), (signup) {
+      CacheHelper.setBool('user', true);
+
       emit(SignUpSuccess());
     });
   }
@@ -32,6 +35,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(SignInFailure(message: failure));
       },
       (signin) {
+        CacheHelper.setBool('user', true);
         emit(SignInSuccess(userModel: signin));
       },
     );

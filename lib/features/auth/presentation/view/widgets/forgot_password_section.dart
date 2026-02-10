@@ -21,6 +21,7 @@ class _ForgotPasswordSectionState extends State<ForgotPasswordSection> {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 100),
             CustomTextField(

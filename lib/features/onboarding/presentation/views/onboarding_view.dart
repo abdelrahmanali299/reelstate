@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reelstate/features/auth/presentation/view/sign_in_view.dart';
 import 'onboarding_page.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -19,7 +20,10 @@ class _OnboardingViewState extends State<OnboardingView> {
         curve: Curves.easeInOut,
       );
     } else {
-      // TODO: Navigate to Login / Home
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const SignInView()),
+      );
     }
   }
 
@@ -33,7 +37,15 @@ class _OnboardingViewState extends State<OnboardingView> {
             /// Skip
             Align(
               alignment: Alignment.centerRight,
-              child: TextButton(onPressed: () {}, child: const Text("Skip")),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SignInView()),
+                  );
+                },
+                child: const Text("Skip"),
+              ),
             ),
 
             /// Pages

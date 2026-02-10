@@ -2,15 +2,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:reelstate/core/models/address_model.dart';
+import 'package:reelstate/core/services/cache_helper.dart';
 import 'package:reelstate/core/services/fire_store_service.dart';
 import 'package:reelstate/core/services/get_it_service.dart';
-import 'package:reelstate/features/auth/presentation/view/sign_in_view.dart';
 import 'package:reelstate/features/home/data/models/realestate_model.dart';
+import 'package:reelstate/features/layout/presentation/views/layout_view.dart';
+import 'package:reelstate/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:reelstate/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await CacheHelper.init();
   GetItService.init();
   await FireStoreService().addData(
     id: '3253554',
@@ -114,7 +117,9 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       debugShowCheckedModeBanner: false,
-      home: SignInView(),
+      home: CacheHelper.getBool('user') == true
+          ? LayoutView()
+          : OnboardingView(),
     );
   }
 }
