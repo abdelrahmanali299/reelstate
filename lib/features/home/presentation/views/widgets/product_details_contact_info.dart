@@ -39,7 +39,7 @@ class ProductDetailsContactInfo extends StatelessWidget {
                   ),
                   Flexible(
                     child: Text(
-                      '${realestateModel.address.country}, ${realestateModel.address.state}, ${realestateModel.address.city}, ${realestateModel.address.street}',
+                      '${realestateModel.address?.country}, ${realestateModel.address?.state}, ${realestateModel.address?.city}, ${realestateModel.address?.street}',
                       style: AppTextStyles.bold14.copyWith(color: Colors.blue),
                     ),
                   ),
@@ -63,7 +63,7 @@ class ProductDetailsContactInfo extends StatelessWidget {
                   ),
                   Spacer(),
                   Text(
-                    'تاريخ النشر : ${realestateModel.date.day}/${realestateModel.date.month}/${realestateModel.date.year}',
+                    'تاريخ النشر : ${realestateModel.date?.day}/${realestateModel.date?.month}/${realestateModel.date?.year}',
                     style: AppTextStyles.bold14.copyWith(color: Colors.grey),
                   ),
                 ],

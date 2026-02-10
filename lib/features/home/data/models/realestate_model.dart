@@ -2,32 +2,40 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:reelstate/core/models/address_model.dart';
 
 class RealestateModel {
-  final String title;
-  final num price;
-  final RealestateType type;
-  final List<String> images;
-  final int roomsNumber;
-  final int bathroomsNumber;
-  final num area;
-  final String desc;
-  final AddressModel address;
-  final int id;
-  final DateTime date;
-  final bool isFav;
+  String? title;
+  num? price;
+  RealestateType? type;
+  List<String>? images;
+  int? roomsNumber;
+  int? bathroomsNumber;
+  num? area;
+  String? desc;
+  AddressModel? address;
+  int? id;
+  DateTime? date;
+  bool? isFav;
+  int? minArea;
+  int? maxArea;
+  int? minPrice;
+  int? maxPrice;
 
   RealestateModel({
-    required this.title,
-    required this.price,
-    required this.type,
-    required this.images,
-    required this.roomsNumber,
-    required this.bathroomsNumber,
-    required this.area,
-    required this.desc,
-    required this.address,
-    required this.id,
-    required this.date,
+    this.title,
+    this.price,
+    this.type,
+    this.images,
+    this.roomsNumber,
+    this.bathroomsNumber,
+    this.area,
+    this.desc,
+    this.address,
+    this.id,
+    this.date,
     this.isFav = false,
+    this.minArea,
+    this.maxArea,
+    this.maxPrice,
+    this.minPrice,
   });
   factory RealestateModel.fromJson(Map<String, dynamic> json) {
     final dynamic dateValue = json['date'];
@@ -49,6 +57,10 @@ class RealestateModel {
     return RealestateModel(
       title: json['title'],
       price: json['price'],
+      minArea: json['minArea'],
+      maxArea: json['maxArea'],
+      minPrice: json['minPrice'],
+      maxPrice: json['maxPrice'],
       type: RealestateType.values.byName(json['type']),
       images: List<String>.generate(
         json['images'].length,
@@ -68,15 +80,19 @@ class RealestateModel {
     return {
       'title': title,
       'price': price,
-      'type': type.name,
+      'type': type?.name,
       'images': images,
       'roomsNumber': roomsNumber,
       'bathroomsNumber': bathroomsNumber,
       'area': area,
       'desc': desc,
-      'address': address.toJson(),
+      'minArea': minArea,
+      'maxArea': maxArea,
+      'minPrice': minPrice,
+      'maxPrice': maxPrice,
+      'address': address?.toJson(),
       'id': id,
-      'date': Timestamp.fromDate(date),
+      'date': Timestamp.fromDate(date ?? DateTime.now()),
       'isFav': isFav,
     };
   }

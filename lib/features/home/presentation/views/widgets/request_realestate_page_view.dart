@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
+import 'package:reelstate/features/home/data/models/realestate_model.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/realestate_request_details.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/request_realestate_location_and_price_info.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/success_sign.dart';
@@ -17,6 +18,7 @@ class RequestRealestatePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
+      physics: NeverScrollableScrollPhysics(),
       controller: pageController,
       itemBuilder: (context, index) => pages[index],
       itemCount: pages.length,
