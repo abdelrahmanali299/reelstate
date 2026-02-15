@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:csc_picker_plus/csc_picker_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reelstate/core/models/address_model.dart';
@@ -11,6 +10,7 @@ import 'package:reelstate/core/utils/widgets/custom_button.dart';
 import 'package:reelstate/core/utils/widgets/pick_location.dart';
 import 'package:reelstate/features/auth/data/model/user_model.dart';
 import 'package:reelstate/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:reelstate/features/layout/presentation/views/layout_view.dart';
 
 class SignUpTextFieldsSection extends StatefulWidget {
   const SignUpTextFieldsSection({super.key});
@@ -30,83 +30,84 @@ class _SignUpTextFieldsSectionState extends State<SignUpTextFieldsSection> {
   AddressModel addressModel = AddressModel();
   @override
   Widget build(BuildContext context) {
-    return  BlocListener<AuthCubit, AuthState>(
+    return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-          customSnackBar(context, 'sign up successfully', Colors.green);
+          customSnackBar(context, 'تم التسجيل بنجاح', Colors.green);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const LayoutView()),
+          );
         } else if (state is SignUpFailure) {
           customSnackBar(context, state.message, Colors.red);
           log(state.message);
         }
       },
 
-        child:  Form(
-          key: formKey,
-          autovalidateMode: autovalidateMode,
-          child: Column(
-            children: [
-              Align(
-                alignment: AlignmentGeometry.centerLeft,
-                child: Text('الاسم بالكامل', style: AppTextStyles.semiBold14),
-              ),
-              CustomTextField(
-                controller: nameController,
-                hint: 'الاسم بالكامل',
-                fillColor: Colors.white,
-              ),
-              const SizedBox(height: 20),
+      child: Form(
+        key: formKey,
+        autovalidateMode: autovalidateMode,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Align(
+              alignment: AlignmentGeometry.centerLeft,
+              child: Text('الاسم بالكامل', style: AppTextStyles.semiBold14),
+            ),
+            CustomTextField(
+              controller: nameController,
+              hint: 'الاسم بالكامل',
+              fillColor: Colors.white,
+            ),
+            const SizedBox(height: 20),
 
-              Align(
-                alignment: AlignmentGeometry.centerLeft,
-                child: Text(
-                  'البريد الالكتروني',
-                  style: AppTextStyles.semiBold14,
-                ),
-              ),
-              CustomTextField(
-                keyboardType: TextInputType.emailAddress,
-                controller: emailController,
-                hint: 'البريد الالكتروني',
-                fillColor: Colors.white,
-              ),
-              const SizedBox(height: 20),
-              Align(
-                alignment: AlignmentGeometry.centerLeft,
-                child: Text('رقم الهاتف', style: AppTextStyles.semiBold14),
-              ),
-              CustomTextField(
-                keyboardType: TextInputType.phone,
-                controller: phoneController,
-                hint: 'رقم الهاتف',
-                fillColor: Colors.white,
-              ),
-              const SizedBox(height: 20),
-              Align(
-                alignment: AlignmentGeometry.centerLeft,
-                child: Text('كلمة المرور', style: AppTextStyles.semiBold14),
-              ),
-              CustomTextField(
-                keyboardType: TextInputType.visiblePassword,
-                controller: passwordController,
-                hint: 'كلمة المرور',
-                fillColor: Colors.white,
-                isPassword: true,
-              ),
-              SizedBox(height: 50),
+            Align(
+              alignment: AlignmentGeometry.centerLeft,
+              child: Text('البريد الالكتروني', style: AppTextStyles.semiBold14),
+            ),
+            CustomTextField(
+              keyboardType: TextInputType.emailAddress,
+              controller: emailController,
+              hint: 'البريد الالكتروني',
+              fillColor: Colors.white,
+            ),
+            const SizedBox(height: 20),
+            Align(
+              alignment: AlignmentGeometry.centerLeft,
+              child: Text('رقم الهاتف', style: AppTextStyles.semiBold14),
+            ),
+            CustomTextField(
+              keyboardType: TextInputType.phone,
+              controller: phoneController,
+              hint: 'رقم الهاتف',
+              fillColor: Colors.white,
+            ),
+            const SizedBox(height: 20),
+            Align(
+              alignment: AlignmentGeometry.centerLeft,
+              child: Text('كلمة المرور', style: AppTextStyles.semiBold14),
+            ),
+            CustomTextField(
+              keyboardType: TextInputType.visiblePassword,
+              controller: passwordController,
+              hint: 'كلمة المرور',
+              fillColor: Colors.white,
+              isPassword: true,
+            ),
+            SizedBox(height: 50),
 
-              CustomButton(
-                onTap: () {
-                  submitSignUp(context);
-                },
-                borderColor: Color(0xff11D4C4),
-                title: 'انشاء حساب',
-                color: Color(0xff11D4C4),
-                titleColor: Colors.white,
-              ),
-            ],
-          ),
-        )
-      
+            CustomButton(
+              onTap: () {
+                submitSignUp(context);
+              },
+              borderColor: Color(0xff11D4C4),
+              title: 'انشاء حساب',
+              color: Color(0xff11D4C4),
+              titleColor: Colors.white,
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -130,6 +131,7 @@ class _SignUpTextFieldsSectionState extends State<SignUpTextFieldsSection> {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text('بيانات العنوان', style: AppTextStyles.bold18),
                   const SizedBox(height: 16),
@@ -178,7 +180,7 @@ class _SignUpTextFieldsSectionState extends State<SignUpTextFieldsSection> {
                             content: Text('من فضلك أكمل بيانات العنوان'),
                           ),
                         );
-
+                  
                         return;
                       }
                       addressModel.street = streetController.text;
@@ -191,8 +193,8 @@ class _SignUpTextFieldsSectionState extends State<SignUpTextFieldsSection> {
                           addressModel: addressModel,
                         ),
                       );
-
-                      Navigator.pop(bottomSheetcontext);
+                  
+                    
                     },
                   ),
                 ],

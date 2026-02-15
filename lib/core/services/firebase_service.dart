@@ -9,14 +9,10 @@ class FirebaseService {
     required String email,
     required String password,
   }) async {
-    try {
-      return await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    } on FirebaseAuthException catch (e) {
-      throw Exception(e.code);
-    }
+    return await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
   }
 
   Future<UserCredential> signUp({

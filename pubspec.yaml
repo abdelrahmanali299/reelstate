@@ -30,11 +30,11 @@ dependencies:
   latlong2: ^0.9.1
   location: ^8.0.1
   lottie: ^3.3.2
+  shared_preferences: ^2.5.4
   skeletonizer: ^2.1.2
   supabase_flutter: ^2.12.0
   url_launcher: ^6.3.2
 dev_dependencies:
-  dio: ^5.9.1
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
@@ -48,7 +48,10 @@ flutter:
   assets:
     - assets/images/
     - assets/lottie/
+<<<<<<< HEAD
 
+=======
+>>>>>>> 79658b54be98f2837f8b305d6d4b8f8e50ead9e7
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -35,6 +35,12 @@ class _SignInViewBodyState extends State<SignInViewBody> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text(
+                  'ليس لديك حساب؟',
+                  style: AppTextStyles.regular14.copyWith(
+                    color: Color(0xff64748B),
+                  ),
+                ),
                 CustomTextButton(
                   onPressed: () {
                     Navigator.push(
@@ -49,12 +55,6 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   },
                   title: 'انشاء حساب ',
                   textColor: Color(0xff11D4C4),
-                ),
-                Text(
-                  'ليس لديك حساب؟',
-                  style: AppTextStyles.regular14.copyWith(
-                    color: Color(0xff64748B),
-                  ),
                 ),
               ],
             ),
