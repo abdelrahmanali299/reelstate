@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reelstate/core/utils/app_text_styles.dart';
 import 'package:reelstate/core/utils/widgets/custom_button.dart';
-import 'package:reelstate/features/home/data/models/realestate_model.dart';
 import 'package:reelstate/features/home/presentation/manager/home_cubits/request_realestate_cubit/request_realestate_cubit.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/request_realestate_indecator.dart';
 import 'package:reelstate/features/home/presentation/views/widgets/request_realestate_page_view.dart';
